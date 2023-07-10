@@ -1,0 +1,38 @@
+{
+  "name": "create-release-it",
+  "version": "2.0.0",
+  "description": "Add StepSec to any project",
+  "bin": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StepSec/create-release-it.git"
+  },
+  "keywords": [
+    "init",
+    "create",
+    "release",
+  ],
+  "author": {
+    "email": "infosulaimanbd@gmail.com",
+    "name": "Md Sulaiman"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/StepSec/create-release-it/issues"
+  },
+  "homepage": "https://github.com/StepSec/create-release-it#readme",
+  "dependencies": {
+    "execa": "6.1.0",
+    "git-remote-origin-url": "4.0.0",
+    "git-url-parse": "13.1.0",
+    "prompts": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=14.9"
+  }
+}
