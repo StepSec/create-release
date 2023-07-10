@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/StepSec/create-release-it.git"
+    "url": "git+https://github.com/StepSec/create-release.git"
   },
   "keywords": [
     "init",
@@ -23,9 +23,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/StepSec/create-release-it/issues"
+    "url": "https://github.com/StepSec/create-release/issues"
   },
-  "homepage": "https://github.com/StepSec/create-release-it#readme",
+  "homepage": "https://github.com/StepSec/create-release#readme",
   "dependencies": {
     "execa": "6.1.0",
     "git-remote-origin-url": "4.0.0",
