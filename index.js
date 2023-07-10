@@ -11,7 +11,7 @@ import { execa } from 'execa';
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
-const RELEASE_CONFIG = '.release.json';
+const RELEASE_GIT_CONFIG = '.release-git.json';
 const PACKAGE_CONFIG = 'package.json';
 
 (async () => {
@@ -33,7 +33,7 @@ const PACKAGE_CONFIG = 'package.json';
   } catch (err) {}
 
   try {
-    config = JSON.parse(await readFile(RELEASE_CONFIG));
+    config = JSON.parse(await readFile(RELEASE_GIT_CONFIG));
     hasConfig = true;
   } catch (err) {}
 
@@ -71,9 +71,9 @@ const PACKAGE_CONFIG = 'package.json';
     questions.push({
       type: 'select',
       name: 'config',
-      message: 'Where to add the release config?',
+      message: 'Where to add the release-git config?',
       choices: [
-        { title: '.release.json', value: RELEASE_CONFIG },
+        { title: '.release-git.json', value: RELEASE_GIT_CONFIG },
         { title: 'package.json', value: PACKAGE_CONFIG }
       ],
       initial: 0,
@@ -100,22 +100,22 @@ const PACKAGE_CONFIG = 'package.json';
   if (hasManifest) {
     manifest.scripts = manifest.scripts || {};
     if (!('release' in manifest.scripts)) {
-      manifest.scripts.release = 'release';
+      manifest.scripts.release = 'release-git';
       isManifestChanged = true;
     }
   }
 
-  if (isConfigChanged && (!answers.config || answers.config === RELEASE_CONFIG)) {
-    await writeFile(RELEASE_CONFIG, JSON.stringify(config, null, '  ') + EOL);
+  if (isConfigChanged && (!answers.config || answers.config === RELEASE_GIT_CONFIG)) {
+    await writeFile(RELEASE_GIT_CONFIG, JSON.stringify(config, null, '  ') + EOL);
   }
 
   if (answers.config === PACKAGE_CONFIG) {
-    manifest['release'] = config;
+    manifest['release-git'] = config;
     isManifestChanged = true;
   }
   if (isManifestChanged) {
     await writeFile(PACKAGE_CONFIG, JSON.stringify(manifest, null, '  ') + EOL);
   }
 
-  await execa('npm', ['install', 'release', '--save-dev'], { stdio: 'inherit' });
+  await execa('npm', ['install', 'release-git', '--save-dev'], { stdio: 'inherit' });
 })();
